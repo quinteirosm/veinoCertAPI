@@ -1,0 +1,14 @@
+services:
+ db:
+  container_name: veinoCert_mysql_db
+  image: mysql:8.0
+  restart: always
+  ports:
+   - "3306:3306"
+  environment:
+   MYSQL_ROOT_PASSWORD: root
+   MYSQL_DATABASE: veinoCert
+   MYSQL_USER: veinoCert
+   MYSQL_PASSWORD: veinoCert
+  volumes:
+   - ./mysql:/var/lib/mysql
