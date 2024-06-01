@@ -5,7 +5,7 @@ import chipRouter from "./routes/chip.router";
 
 // initialisation de l'application express
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.SERVER_PORT || 3000;
 
 // permet de parser le body des requêtes en json
 app.use(express.json());
@@ -13,6 +13,11 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/documents", repoRouter);
 app.use("chip", chipRouter);
+
+app.get("/", (req, res) => {
+	const headers = req.headers;
+	res.status(200).json({ headers });
+});
 
 // route permettant de vérifier que le serveur est bien en ligne
 app.get("/ping", (req, res) => {
