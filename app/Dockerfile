@@ -1,26 +1,25 @@
-FROM node:lts as builder
+#Build stage
+FROM node:16-alpine AS build
 
-# Create app directory
-WORKDIR /src
+WORKDIR /app
 
-# Install app dependencies
-COPY ./package*.json ./
+COPY package*.json .
 
-RUN npm i
+RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-FROM node:lts-slim as production
+#Production stage
+FROM node:16-alpine AS production
 
-ENV NODE_ENV production
-USER node
+WORKDIR /app
 
-# Create app directory
-WORKDIR /build
+COPY package*.json .
 
-COPY --from=builder /src/dist ./dist
+RUN npm ci --only=production
 
-EXPOSE 8080
-CMD [ "node", "dist/index.js" ]
+COPY --from=build /app/dist ./dist
+
+CMD ["node", "dist/index.js"]
