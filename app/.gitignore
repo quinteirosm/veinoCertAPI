@@ -1,5 +1,10 @@
-# Logs
+# SQL Server files
+*.mdf
+*.ldf
+
 mysql/
+
+# Logs
 logs
 *.log
 npm-debug.log*

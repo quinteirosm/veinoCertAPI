@@ -1,0 +1,54 @@
+name: veno-cert-prod
+
+services:
+ mysql:
+  image: mysql:8
+  restart: always
+  environment:
+   MYSQL_DATABASE: "veinoCert"
+   MYSQL_USER: "veinoCert"
+   MYSQL_PASSWORD: "veinoCert"
+   MYSQL_ROOT_PASSWORD: "root"
+  networks:
+   - mynetwork
+
+ app:
+  build: .
+  restart: always
+  environment:
+   SERVER_PORT: 3000
+   DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
+  depends_on:
+   - seed
+   - mysql
+  networks:
+   - mynetwork
+
+ seed:
+  restart: no
+  build:
+   context: .
+   dockerfile: ./migrate.Dockerfile
+  environment:
+   DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
+  depends_on:
+   - mysql
+  networks:
+   - mynetwork
+
+ nginx:
+  restart: always
+  build:
+   context: ./nginx
+   dockerfile: ./Dockerfile
+  ports:
+   - 80:80
+   - 443:443
+  volumes:
+   - ./config:/config
+  networks:
+   - mynetwork
+
+networks:
+ mynetwork:
+  driver: bridge

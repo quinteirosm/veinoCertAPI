@@ -5,7 +5,7 @@ import chipRouter from "./routes/chip.router";
 
 // initialisation de l'application express
 const app = express();
-const port = process.env.SERVER_PORT || 3000;
+const port = process.env.SERVER_PORT;
 
 // permet de parser le body des requêtes en json
 app.use(express.json());
@@ -15,8 +15,7 @@ app.use("/documents", repoRouter);
 app.use("chip", chipRouter);
 
 app.get("/", (req, res) => {
-	const headers = req.headers;
-	res.status(200).json({ headers });
+	res.send("Bienvenue sur l'API VenoCert");
 });
 
 // route permettant de vérifier que le serveur est bien en ligne
