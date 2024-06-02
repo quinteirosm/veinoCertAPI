@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Étape 2 : Production
-FROM node:18-alpine AS production
+FROM node:18 AS production
 
 # Définir le répertoire de travail
 WORKDIR /app

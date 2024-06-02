@@ -1,26 +1,31 @@
 import express from "express";
+import path from "path";
 import userRouter from "./routes/user.router";
 import repoRouter from "./routes/repository.router";
 import chipRouter from "./routes/chip.router";
+import setupSwagger from "./utils/swagger";
 
-// initialisation de l'application express
 const app = express();
-const port = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT || 3000;
 
-// permet de parser le body des requêtes en json
 app.use(express.json());
-// permet de parser les query string des requêtes
 app.use("/users", userRouter);
-app.use("/documents", repoRouter);
-app.use("chip", chipRouter);
+app.use("/repositories", repoRouter);
+app.use("/chips", chipRouter);
+
+// Ajoute la configuration Swagger
+setupSwagger(app);
 
 app.get("/", (req, res) => {
-	res.send("Bienvenue sur l'API VenoCert");
+	res.send("Bienvenue sur l'API VeinoCert");
 });
 
-// route permettant de vérifier que le serveur est bien en ligne
 app.get("/ping", (req, res) => {
-	res.json({ message: "pong" }).status(200);
+	const startTime = new Date().getTime();
+	res.status(200).json({
+		message: "pong",
+		latency: new Date().getTime() - startTime,
+	});
 });
 
 app.listen(port, () => {

@@ -8,9 +8,9 @@
 		"seed": "ts-node prisma/seed.ts"
 	},
 	"scripts": {
-		"dev": "ts-node-dev --respawn ./src/index.ts",
 		"build": "rimraf ./dist && tsc",
-		"start": "npm run build && node dist/index.js",
+		"dev": "ts-node-dev ./src/index.ts",
+		"start": "node dist/index.js",
 		"migrate": "prisma migrate dev",
 		"seed": "prisma db seed",
 		"dbstart": "sleep 20s && npm run migrate && npm run seed"
@@ -26,12 +26,17 @@
 		"nodemon": "^3.1.2",
 		"prisma": "^5.14.0",
 		"rimraf": "^5.0.7",
+		"swagger-ui-express": "^5.0.1",
 		"ts-node": "^10.9.2",
 		"ts-node-dev": "^2.0.0",
 		"typescript": "^5.4.5",
-		"uuid": "^9.0.1"
+		"uuid": "^9.0.1",
+		"@types/node": "^20.13.0",
+		"@types/swagger-ui-express": "^4.1.6",
+		"express-openapi-validator": "^5.2.0",
+		"openapi-typescript": "^6.7.6",
+		"swagger-autogen": "^2.23.7",
+		"swagger-jsdoc": "^6.2.8"
 	},
-	"devDependencies": {
-		"@types/node": "^20.13.0"
-	}
+	"devDependencies": {}
 }

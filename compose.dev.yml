@@ -13,11 +13,25 @@ services:
    - mynetwork
 
  app:
-  build: .
+  build:
+   context: ./app
+   dockerfile: ./Dockerfile
   ports:
    - "3000:3000"
   environment:
    SERVER_PORT: 3000
+   DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
+  depends_on:
+   - mysql
+  networks:
+   - mynetwork
+
+ seed:
+  restart: no
+  build:
+   context: ./app
+   dockerfile: ./migrate.Dockerfile
+  environment:
    DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
   depends_on:
    - mysql

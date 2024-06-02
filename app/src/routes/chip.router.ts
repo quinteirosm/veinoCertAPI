@@ -3,7 +3,7 @@ import { getAllChips, getChipById } from "../controllers/chip.controller";
 
 const chipRouter = Router();
 
-// route to get all chips
+// get all chips registeres in the database
 chipRouter.get("/", getAllChips);
 
 // route to get a chip by userId

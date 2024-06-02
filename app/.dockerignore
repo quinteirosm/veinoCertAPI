@@ -2,3 +2,5 @@ node_modules/
 dist/
 mysql/
 npm-debug.log
+
+app/dist/
