@@ -10,7 +10,7 @@ services:
    MYSQL_PASSWORD: "veinoCert"
    MYSQL_ROOT_PASSWORD: "root"
   volumes:
-   - v-mysql:/mysql
+   - v-mysql-prod:/mysql
   networks:
    - mynetwork
 
@@ -26,7 +26,7 @@ services:
    - seed
    - mysql
   volumes:
-   - v-app:/app
+   - v-app-prod:/app
   networks:
    - mynetwork
 
@@ -51,14 +51,14 @@ services:
    - 80:80
    - 443:443
   volumes:
-   - v-nginx:/nginx
+   - v-nginx-prod:/nginx
   networks:
    - mynetwork
 
 volumes:
- v-mysql:
- v-nginx:
- v-app:
+ v-mysql-prod:
+ v-nginx-prod:
+ v-app-prod:
 
 networks:
  mynetwork:

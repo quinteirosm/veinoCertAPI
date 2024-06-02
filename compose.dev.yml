@@ -1,3 +1,5 @@
+name: veno-cert-dev
+
 services:
  mysql: # Nom du service MySQL
   image: mysql:8
@@ -9,6 +11,8 @@ services:
    MYSQL_ROOT_PASSWORD: "root"
   ports:
    - "3306:3306"
+  volumes:
+   - v-mysql-dev:/mysql
   networks:
    - mynetwork
 
@@ -23,6 +27,8 @@ services:
    DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
   depends_on:
    - mysql
+  volumes:
+   - v-app-dev:/app
   networks:
    - mynetwork
 
@@ -38,5 +44,10 @@ services:
   networks:
    - mynetwork
 
+volumes:
+ v-mysql-dev:
+ v-app-dev:
+
 networks:
  mynetwork:
+  driver: bridge
