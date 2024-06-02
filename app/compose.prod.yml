@@ -2,13 +2,15 @@ name: veno-cert-prod
 
 services:
  mysql:
-  image: mysql:8
+  image: mysql
   restart: always
   environment:
    MYSQL_DATABASE: "veinoCert"
    MYSQL_USER: "veinoCert"
    MYSQL_PASSWORD: "veinoCert"
    MYSQL_ROOT_PASSWORD: "root"
+  volumes:
+   - v-mysql:/mysql
   networks:
    - mynetwork
 
@@ -21,6 +23,8 @@ services:
   depends_on:
    - seed
    - mysql
+  volumes:
+   - v-app:/app
   networks:
    - mynetwork
 
@@ -45,9 +49,14 @@ services:
    - 80:80
    - 443:443
   volumes:
-   - ./config:/config
+   - v-nginx:/nginx
   networks:
    - mynetwork
+
+volumes:
+ v-mysql:
+ v-nginx:
+ v-app:
 
 networks:
  mynetwork:

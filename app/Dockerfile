@@ -1,5 +1,5 @@
 # Étape 1 : Build
-FROM node:18 AS build
+FROM node:18 AS builder
 
 # Définir le répertoire de travail
 WORKDIR /app
@@ -29,13 +29,13 @@ COPY package*.json ./
 RUN npm install --omit=dev
 
 # Copier les fichiers compilés de l'étape de build
-COPY --from=build /app/dist /app/dist
+COPY --from=builder /app/dist /app/dist
 
 # Copier le dossier prisma
-COPY --from=build /app/prisma /app/prisma
+COPY --from=builder /app/prisma /app/prisma
 
 # Copier le fichier prisma schema
-COPY --from=build /app/prisma/schema.prisma /app/prisma/schema.prisma
+COPY --from=builder /app/prisma/schema.prisma /app/prisma/schema.prisma
 
 # Définir la variable d'environnement pour la base de données
 ENV DATABASE_URL=mysql://root:root@mysql:3306/veinoCert
