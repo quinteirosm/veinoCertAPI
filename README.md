@@ -6,32 +6,32 @@ Installations needed:
 - Docker
 - Node.js
 
-# Env variables
+## Env variables
 
 You have to set different environnement variables in the docker compose files for it to work:
 
 ```yml
 MYSQL SERVICE
 
-MYSQL_DATABASE: "veinoCert"
-MYSQL_USER: "veinoCert"
-MYSQL_PASSWORD: "veinoCert"
-MYSQL_ROOT_PASSWORD: "root"
+MYSQL_DATABASE: "veinoCert" #DB's name
+MYSQL_ROOT_PASSWORD: "root" #DB's root password
+MYSQL_USER: "veinoCert"     #DB's username
+MYSQL_PASSWORD: "veinoCert" #the DB's password
 
 APP SERVICE
 
-SERVER_PORT: 3000
-DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
+SERVER_PORT: 3000 #API's port
+DATABASE_URL: mysql://root:root@mysql:3306/veinoCert #DB's URL
 
 SEED SERVICE
 
-MYSQL_DATABASE: "veinoCert"
-MYSQL_USER: "veinoCert"
-MYSQL_PASSWORD: "veinoCert"
-MYSQL_ROOT_PASSWORD: "root"
+MYSQL_DATABASE: "veinoCert" #DB's name
+MYSQL_ROOT_PASSWORD: "root" #DB's root password
+MYSQL_USER: "veinoCert"     #DB's username
+MYSQL_PASSWORD: "veinoCert" #the DB's password
 ```
 
-# How to run
+## How to run
 
 Run as dev:
 

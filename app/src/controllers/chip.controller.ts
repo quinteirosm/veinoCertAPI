@@ -13,11 +13,11 @@ export const getAllChips = async (req, res) => {
 };
 
 // get a chip by userId
-export const getChipById = async (req, res) => {
+export const getChipByUserId = async (req, res) => {
 	const userId = req.params.userId;
 	const chip = await repoClient.findFirst({
 		where: {
-			userId: parseInt(userId),
+			userId: userId,
 		},
 	});
 	if (!chip) {

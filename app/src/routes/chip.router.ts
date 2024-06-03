@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllChips, getChipById } from "../controllers/chip.controller";
+import { getAllChips, getChipByUserId } from "../controllers/chip.controller";
 
 const chipRouter = Router();
 
@@ -7,6 +7,6 @@ const chipRouter = Router();
 chipRouter.get("/", getAllChips);
 
 // route to get a chip by userId
-chipRouter.get("/:userId", getChipById);
+chipRouter.get("/:userId", getChipByUserId);
 
 export default chipRouter;

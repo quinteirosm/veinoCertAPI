@@ -1,11 +1,5 @@
 import { Router } from "express";
-import {
-	getAllUsers,
-	getUserById,
-	createUser,
-	updateUser,
-	deleteUser,
-} from "../controllers/user.controller";
+import { getUserById, login } from "../controllers/user.controller";
 
 const userRouter = Router();
 
@@ -13,56 +7,14 @@ const userRouter = Router();
  * @swagger
  * tags:
  *   name: Users
- *   description: API pour la gestion des utilisateurs
+ *   description: API for user management
  */
-
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Récupérer la liste de tous les utilisateurs
- *     tags: [Users]
- *     responses:
- *       200:
- *         description: Liste des utilisateurs
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/User'
- */
-userRouter.get("/", getAllUsers);
-
-/**
- * @swagger
- * /users:
- *   post:
- *     summary: Créer un nouvel utilisateur
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     responses:
- *       201:
- *         description: Utilisateur créé avec succès
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
- *       400:
- *         description: Requête invalide
- */
-userRouter.post("/", createUser);
 
 /**
  * @swagger
  * /users/{id}:
  *   get:
- *     summary: Récupérer un utilisateur par ID
+ *     summary: Get a user by ID
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -70,71 +22,50 @@ userRouter.post("/", createUser);
  *         schema:
  *           type: string
  *         required: true
- *         description: ID de l'utilisateur
+ *         description: User ID
  *     responses:
  *       200:
- *         description: Détails de l'utilisateur
+ *         description: User details
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       404:
- *         description: Utilisateur non trouvé
+ *         description: User not found
  */
 userRouter.get("/:id", getUserById);
 
 /**
  * @swagger
- * /users/{id}:
- *   put:
- *     summary: Mettre à jour un utilisateur par ID
+ * /users/login:
+ *   get:
+ *     summary: Identify a user by email and password
  *     tags: [Users]
  *     parameters:
- *       - in: path
- *         name: id
+ *       - in: body
+ *         name: email
  *         schema:
  *           type: string
  *         required: true
- *         description: ID de l'utilisateur
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
+ *         description: User email
+ *       - in: body
+ *         name: password
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User password
  *     responses:
  *       200:
- *         description: Utilisateur mis à jour avec succès
+ *         description: User data
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       400:
- *         description: Requête invalide
  *       404:
- *         description: Utilisateur non trouvé
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
  */
-userRouter.put("/:id", updateUser);
-
-/**
- * @swagger
- * /users/{id}:
- *   delete:
- *     summary: Supprimer un utilisateur par ID
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: ID de l'utilisateur
- *     responses:
- *       200:
- *         description: Utilisateur supprimé avec succès
- *       404:
- *         description: Utilisateur non trouvé
- */
-userRouter.delete("/:id", deleteUser);
+userRouter.get("/login", login);
 
 export default userRouter;

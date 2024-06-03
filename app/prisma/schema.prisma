@@ -12,27 +12,28 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
-
 // a user model with a unique `email` field
 model Users {
-  id    Int     @id @default(autoincrement())
+  id    String  @id @default(uuid()) @unique
   name  String
   email String  @unique
   password String
-  pseudo String
+  bio String
 }
 
 // a chip model containing an id field and the user's id
 model Chips {
-  id Int @id @default(autoincrement())
-  physicalId String
-  userId Int
+  id    String  @id @default(uuid()) @unique
+  phyId String
+  otk String
+  timestamp String
+  userId String
 }
 
 // a document model containing an id field and the chip's id
 model Documents {
-  id Int @id @default(autoincrement())
+  id    String  @id @default(uuid()) @unique
   chipPhysicalId String
-  userId Int
+  userId String
   url String
 }
