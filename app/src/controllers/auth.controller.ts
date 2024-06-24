@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-// route that takes in a chipId, a otk, a timestamp and a pseudo and verifies it inside the database
+// This function is used to authenticate a user
 export const authUser = async (req: any, res: any) => {
 	const prisma = new PrismaClient();
 	const { chipId, otk, timestamp, pseudo } = req.body;
@@ -18,13 +18,24 @@ export const authUser = async (req: any, res: any) => {
 		},
 	});
 
-	if (chipPhyId.otk === otk && chipPhyId.timestamp === timestamp) {
+	// get the document with the given chipId
+	const document = await prisma.documents.findFirst({
+		where: {
+			chipPhysicalId: chipPhyId.phyId,
+		},
+	});
+
+	if (otk === chipPhyId.otk && timestamp === chipPhyId.timestamp) {
 		res.status(401).json({
 			message: "Invalid otk",
 		});
-	} else {
+	} else if (pseudo === user.bio) {
 		res.status(200).json({
-			user: user,
+			documentUrl: document.url,
+		});
+	} else {
+		res.status(401).json({
+			message: "Invalid informations",
 		});
 	}
 };

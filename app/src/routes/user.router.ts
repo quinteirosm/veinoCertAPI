@@ -15,7 +15,7 @@ const userRouter = Router();
  * /users/{id}:
  *   get:
  *     summary: Get a user by ID
- *     tags: [Users]
+ *     tags: [devUsers]
  *     parameters:
  *       - in: path
  *         name: id
@@ -40,7 +40,7 @@ userRouter.get("/:id", getUserById);
  * /users/login:
  *   get:
  *     summary: Identify a user by email and password
- *     tags: [Users]
+ *     tags: [devUsers]
  *     parameters:
  *       - in: body
  *         name: email

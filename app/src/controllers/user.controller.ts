@@ -1,8 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const userClient = new PrismaClient().users;
 
-// getUserById
+// get a user by id
 export const getUserById = async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -21,22 +22,18 @@ export const getUserById = async (req, res) => {
 	}
 };
 
-// login and return user data
+// login a user
 export const login = async (req, res) => {
 	const { email, password } = req.body;
-	try {
-		const user = await userClient.findFirst({
-			where: {
-				email: email,
-				password: password,
-			},
-		});
-		if (user) {
-			res.status(200).json(user);
-		} else {
-			res.status(404).json({ message: "User not found" });
-		}
-	} catch (error) {
-		res.status(500).json({ message: error.message });
+	const user = await userClient.findFirst({
+		where: {
+			email: email,
+		},
+	});
+	const validPass = await bcrypt.compare(password, user.password);
+	if (validPass) {
+		res.status(200).json(user);
+	} else {
+		res.status(404).json({ message: "User not found" });
 	}
 };

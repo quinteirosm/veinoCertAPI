@@ -3,6 +3,7 @@ import path from "path";
 import userRouter from "./routes/user.router";
 import repoRouter from "./routes/repository.router";
 import chipRouter from "./routes/chip.router";
+import authRouter from "./routes/auth.router";
 import setupSwagger from "./utils/swagger";
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/repositories", repoRouter);
 app.use("/chips", chipRouter);
+app.use("/auth", authRouter);
 
 // Ajoute la configuration Swagger
 setupSwagger(app);

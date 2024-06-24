@@ -26,7 +26,7 @@ services:
    SERVER_PORT: 3000
    DATABASE_URL: mysql://root:root@mysql:3306/veinoCert
   depends_on:
-   - mysql
+   - seed
   volumes:
    - v-app-dev:/app
   networks:

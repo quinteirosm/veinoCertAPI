@@ -12,7 +12,7 @@ export const getAllChips = async (req, res) => {
 	}
 };
 
-// get a chip by userId
+// get chip by userId
 export const getChipByUserId = async (req, res) => {
 	const userId = req.params.userId;
 	const chip = await repoClient.findFirst({
