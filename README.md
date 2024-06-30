@@ -44,3 +44,7 @@ Run as prod:
 ```bash
 docker compose -f compose.prod.yml up --build
 ```
+
+## To check the app's documentation
+
+After running the previous commands, go to [localhost:3000/api-docs](localhost:3000/api-docs).

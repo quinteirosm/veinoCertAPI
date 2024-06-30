@@ -1,0 +1,7 @@
+{
+  "name": "VenoCertApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
