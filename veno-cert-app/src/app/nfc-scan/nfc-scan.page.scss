@@ -1,0 +1,9 @@
+ion-accordion-group ion-accordion:not(:first-child) ion-accordion-header {
+  pointer-events: none; /* Disable click interaction */
+  opacity: 0.5; /* Reduce opacity to indicate disabled state */
+  cursor: default; /* Change cursor to default */
+}
+
+#done {
+  background-color: green;
+}

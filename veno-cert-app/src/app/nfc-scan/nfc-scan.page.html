@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>nfcScan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-accordion-group value="1">
+    <ion-accordion value="1">
+      <ion-item slot="header" color="light">
+        <ion-label>Brancher le VenoScanner</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Pour pouvoir obtenir les informations privées, nous avons besoin de votre empreinte veineuse.
+        Veuillez connecter le VenoScanner au port de charge de votre téléphone.
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="2">
+      <ion-item slot="header" color="light">
+        <ion-label>Configurer l’accès internet</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Pour pouvoir avoir accès aux informations, nous avons besoin d’un accès à internet.
+        Pour se faire, veuillez remplir les champs ci-dessous.
+        Le SSID est le nom de votre réseau Wi-Fi.
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="3">
+      <ion-item slot="header" color="light">
+        <ion-label>Insérer un doigt</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Veuillez insérer votre doigt dans l’appareil afin de récupérer les informations.
+        Quand votre doigt est bien inséré, appuyez sur continuer.
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="4">
+      <ion-item slot="header" color="light">
+        <ion-label>Reconnaissance du doigt..</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Pour pouvoir obtenir les informations privées, nous avons besoin de votre empreinte veineuse.
+        Veuillez connecter le VenoScanner au port de charge de votre téléphone.
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="5">
+      <ion-item slot="header" color="light">
+        <ion-label>Fini</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        L’empreinte a bien pu être prélevée.
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>

@@ -9,11 +9,20 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'tag-details',
+    loadChildren: () =>
+      import('./tag-details/tag-details.module').then(
+        (m) => m.TagDetailsPageModule
+      ),
+  },
+  {
+    path: 'nfc-scan',
+    loadChildren: () =>
+      import('./nfc-scan/nfc-scan.module').then((m) => m.NfcScanPageModule),
   },
 ];
 @NgModule({
